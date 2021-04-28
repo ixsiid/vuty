@@ -1,6 +1,7 @@
 <template>
-	<div class="develop">
-    <p>developement mode</p>
+	<div class="develop" v-show="isDevelopment">
+    <slot name="header"><div class="view header">Developement mode</div></slot>
+    <slot name="footer"><div class="view footer">Developement mode</div></slot>
 	</div>
 </template>
 
@@ -12,40 +13,30 @@ export default {
   data: function() {
     return {};
   },
-  computed: {},
-  methods: {
-    onWindowLoad() {
-    },
+  computed: {
+    isDevelopment: () => process.env.NODE_ENV && process.env.NODE_ENV.startsWith('development')
   },
-  mounted: function() {
-    window.addEventListener("load", this.onWindowLoad, {
-      once: true,
-      passive: true
-    });
-    dispatchEvent(new PopStateEvent("popstate", {}));
-  },
-  unmounted: function() {
-    window.removeEventListener("load", this.windowLoad, {
-      once: true,
-      passive: true
-    });
-  }
 };
 </script>
 
-<style>
+<style scoped>
 .develop {
   position: fixed;
+
+  margin: 0;
   top: 0;
   left: 0;
   width: 100%;
+  height: 100%;
+
   display: flex;
-  flex-direction: columns;
-  margin: 0;
+  flex-direction: column;
+  justify-content: space-between;
+  
   pointer-events: none;
 }
 
-.develop > * {
+.view {
   width: 100%;
   background-color: rgba(255, 0, 0, 0.3);
   color: white;

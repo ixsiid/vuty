@@ -9,17 +9,18 @@ export default {
   name: 'CheckButton',
   components: {},
   props: {
-    value: { type: Boolean, default: false },
+    modelValue: { type: Boolean, default: false },
     text: { type: String, default: 'text' },
     hue: { type: Number, default: 120 },
     darkmode: { type: Boolean, default: false },
     name: { type: String, default: '' },
   },
+  emits: ['update:modelValue'],
   data: function() { return {}; },
   computed: {
     form_checked: {
-      get() { return this.value },
-      set(check) { this.$emit("input", check); }
+      get() { return this.modelValue },
+      set(check) { this.$emit("update:modelValue", check); }
     },
     button_style() {
       return {

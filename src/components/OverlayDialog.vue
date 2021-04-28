@@ -43,10 +43,10 @@ export default {
     },
   },
   mounted() {
-    this.children = this.$slots.default.map(x => ({
-      name: x.data.attrs.name,
-      style: x.elm.style,
-      display: x.elm.style.display,
+    this.children = this.$slots.default().map(x => ({
+      name: x.props.name,
+      style: x.el.style,
+      display: x.el.style.display,
     }));
   },
 };

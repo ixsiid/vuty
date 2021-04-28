@@ -1,12 +1,9 @@
-import develop from './src/components/Develop.vue';
+import Develop from './src/components/Develop.vue';
+export { Develop };
 
-export default vuty = {
-	install(Vue, options) {
-		const components = {
-			develop,
-		}
-		for (const [name, c] of Object.entries(components)) {
-			Vue.component(name, c)
-		}
-	},
-}
+import CheckButton from './src/components/CheckButton.vue';
+export { CheckButton };
+
+import OverlayDialog from './src/components/OverlayDialog.vue';
+export { OverlayDialog };
+
